@@ -1,0 +1,770 @@
+/* 关键样式 - 优先加载，避免闪烁 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #575757;
+    color: #f8fafc;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 现代化目录浏览器样式 */
+:root {
+    --primary-color: #60a5fa;
+    --primary-color-hover: #3b82f6;
+    --secondary-color: #94a3b8;
+    --success-color: #34d399;
+    --success-color-hover: #10b981;
+    --danger-color: #f87171;
+    --danger-color-hover: #ef4444;
+    --warning-color: #fbbf24;
+    --background-color: #575757;
+    --surface-color: #575757;
+    --text-primary: #f8fafc;
+    --text-secondary: #d1d5db;
+    --border-color: #fff;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.3);
+    --border-radius: 8px;
+    --transition: all 0.2s ease;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* 统一过渡效果 */
+.btn,
+.action-btn {
+    transition: var(--transition);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--success-color-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-color-hover);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #6b7280;
+}
+
+/* ==================== 通用组件样式 ==================== */
+
+/* 文件列表容器（用于表单和记录列表） */
+.file-list {
+    background: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 2px solid var(--border-color);
+    overflow: hidden;
+}
+
+.file-list-header {
+    background-color: var(--surface-color);
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* 工具栏 */
+.toolbar {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* 操作按钮 */
+.action-btn {
+    padding: 0.25rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+
+.action-btn:hover {
+    background-color: #6b7280;
+}
+
+.action-btn.delete:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* 通知消息 */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 400px;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    transition: var(--transition);
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.notification.success {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.notification.error {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.notification.info {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* ==================== 车辆管理样式 ==================== */
+
+/* 车辆切换器容器 */
+.vehicle-selector-container {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.vehicle-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.vehicle-selector-title {
+    flex: 0 0 auto;
+}
+
+.vehicle-title {
+    color: var(--text-primary);
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.vehicle-selector-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.vehicle-selector label {
+    color: var(--text-primary);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* 响应式设计 - 车辆选择器 */
+@media (max-width: 768px) {
+    .vehicle-selector-container {
+        padding: 0.75rem 1rem;
+    }
+
+    .vehicle-selector {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .vehicle-selector-title {
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    .vehicle-title {
+        font-size: 1.5rem;
+    }
+
+    .vehicle-selector-controls {
+        width: 100%;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .vehicle-selector label {
+        text-align: left;
+    }
+
+    .vehicle-select {
+        min-width: 0;
+        max-width: none;
+        flex: 1;
+    }
+
+    /* 按钮适配 */
+    .vehicle-selector-controls .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        white-space: nowrap;
+    }
+}
+
+.vehicle-select {
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+    background: var(--background-color);
+    color: var(--text-primary);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.vehicle-select:hover {
+    border-color: var(--primary-color);
+}
+
+.vehicle-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* 模态框 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    background: var(--surface-color);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+/* 车辆列表表格 */
+.vehicles-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.vehicles-table th,
+.vehicles-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.vehicles-table th {
+    background: var(--background-color);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.vehicles-table td {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.vehicles-table tbody tr:hover {
+    background: var(--background-color);
+}
+
+.vehicles-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 徽章 */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 4px;
+    margin-right: 0.25rem;
+}
+
+.badge-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.badge-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.badge-secondary {
+    background: var(--text-secondary);
+    color: white;
+}
+
+/* 警告按钮（用于停用操作） */
+.btn-warning {
+    background-color: #f59e0b;
+    color: #1f2937;
+}
+
+.btn-warning:hover {
+    background-color: #d97706;
+}
+
+/* 停用车辆行样式 */
+.inactive-row {
+    opacity: 0.6;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.inactive-row:hover {
+    opacity: 0.8;
+}
+
+/* 车辆管理表格操作按钮间距 */
+.table-actions .btn {
+    margin-right: 0.5rem;
+}
+
+.table-actions .btn:last-child {
+    margin-right: 0;
+}
+
+/* 表单操作按钮 */
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+/* 按钮尺寸 */
+.btn-sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+/* 响应式设计 - 模态框 */
+@media (max-width: 768px) {
+    .modal-content {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .vehicles-table {
+        font-size: 0.875rem;
+    }
+
+    .vehicles-table th,
+    .vehicles-table td {
+        padding: 0.5rem;
+    }
+
+    .table-actions {
+        flex-direction: column;
+    }
+
+    .table-actions button {
+        width: 100%;
+    }
+}
+
+/* ==================== 主页面样式 ==================== */
+
+/* 统计卡片样式 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.stat-card-title {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card-value {
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card-unit {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* 表单样式 */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    background: var(--background-color);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-family: inherit;
+}
+
+.form-group input {
+    width: 100%;
+    height: 2.5rem;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.form-group textarea {
+    min-height: 3rem;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* 表格样式 */
+.records-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.records-table th,
+.records-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.records-table th {
+    background: var(--background-color);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.records-table td {
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.records-table tbody tr:hover {
+    background: var(--background-color);
+}
+
+.records-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 图表容器 */
+.chart-container {
+    background: var(--surface-color);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* 时间范围按钮 */
+.time-range-btn {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+    background: var(--background-color);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.time-range-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* 分页器样式 */
+.pagination {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.pagination-btn {
+    padding: 0.375rem 0.75rem;
+    background: var(--background-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.pagination-btn:hover:not(.disabled):not(.active) {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pagination-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+
+.pagination-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-ellipsis {
+    color: var(--text-secondary);
+    padding: 0 0.25rem;
+}
+
+.per-page-select {
+    background: var(--background-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.375rem 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.per-page-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* 响应式设计 - 移动端 */
+@media (max-width: 768px) {
+    .chart-container > div:first-child {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1rem;
+    }
+
+    .chart-time-range {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .time-range-btn {
+        flex: 1;
+        font-size: 0.7rem;
+        padding: 0.35rem 0.5rem;
+    }
+
+    /* 分页器移动端优化 */
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pagination-btn {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    /* 统计卡片横向滚动 */
+    .stats-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.75rem;
+    }
+
+    .stat-card {
+        flex: 0 0 140px;
+        scroll-snap-align: start;
+        padding: 1rem;
+    }
+
+    .stat-card-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-card-title,
+    .stat-card-unit {
+        font-size: 0.75rem;
+    }
+
+    /* 隐藏滚动条 */
+    .stats-grid {
+        scrollbar-width: none;          /* Firefox */
+        -ms-overflow-style: none;       /* IE/Edge */
+    }
+
+    .stats-grid::-webkit-scrollbar {
+        display: none;                  /* Chrome/Safari */
+    }
+}

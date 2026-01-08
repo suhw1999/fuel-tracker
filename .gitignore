@@ -1,0 +1,28 @@
+# 数据库文件
+*.db
+
+# 日志文件
+*.log
+
+# 临时文件
+*.tmp
+*.bak
+
+# IDE和编辑器文件
+.vscode/
+.idea/
+.claude/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 项目文档（可选，根据需要排除）
+*.md
+
+# 环境配置文件（包含敏感信息）
+.env
+.env.local
+.env.*.local
