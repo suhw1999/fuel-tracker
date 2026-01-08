@@ -42,9 +42,17 @@ define('RECORDS_PAGE_SIZES', [10, 20, 50, 100]);  // 可选的每页显示数量
 
 // 安全配置
 define('CSRF_TOKEN_NAME', 'csrf_token');
-define('SESSION_TIMEOUT', 3600);
+define('SESSION_TIMEOUT', 604800); // 会话超时时间（秒）= 7天
+define('SESSION_COOKIE_LIFETIME', 604800); // Cookie 保持时间（秒）= 7天
 
 if (session_status() === PHP_SESSION_NONE) {
+    // 设置 Session Cookie 参数：7天有效期 + 安全选项
+    session_set_cookie_params([
+        'lifetime' => SESSION_COOKIE_LIFETIME,
+        'path' => '/',
+        'httponly' => true,    // 防止 XSS 读取 Cookie
+        'samesite' => 'Lax'    // 防止 CSRF 攻击
+    ]);
     session_start();
 }
 
