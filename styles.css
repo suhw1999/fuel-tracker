@@ -707,6 +707,10 @@ a {
 
 /* 响应式设计 - 移动端 */
 @media (max-width: 768px) {
+    .container {
+        padding: 1.5rem;
+    }
+    
     .chart-container > div:first-child {
         flex-direction: column;
         align-items: flex-start !important;
