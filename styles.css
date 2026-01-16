@@ -625,6 +625,30 @@ a {
     box-shadow: var(--shadow);
 }
 
+/* 图表加载动画 */
+.chart-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    color: var(--text-secondary);
+    gap: 1rem;
+}
+
+.chart-loading .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
 .section-title {
     color: var(--text-primary);
     font-size: 1.25rem;
@@ -726,6 +750,7 @@ a {
         flex: 1;
         font-size: 0.7rem;
         padding: 0.35rem 0.5rem;
+        justify-content: center;
     }
 
     /* 分页器移动端优化 */

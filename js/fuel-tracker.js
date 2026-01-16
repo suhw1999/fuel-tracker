@@ -297,6 +297,10 @@ function initChart(chartData) {
     const chartContainer = document.getElementById('consumptionChart')?.parentElement;
     if (!chartContainer) return;
 
+    // 隐藏加载动画
+    const loadingEl = document.getElementById('chartLoading');
+    if (loadingEl) loadingEl.style.display = 'none';
+
     // 确保 canvas 元素存在
     let canvas = document.getElementById('consumptionChart');
     if (!canvas) {

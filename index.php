@@ -86,7 +86,8 @@ $csrfToken = generateCSRFToken();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>油耗统计</title>
     <link rel="stylesheet" href="styles.css?v=<?php echo filemtime(__DIR__ . '/styles.css'); ?>">
-    <script defer src="https://cdn.bootcdn.net/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+    <link rel="preload" href="js/chart.umd.min.js" as="script">
+    <script defer src="js/chart.umd.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -180,7 +181,11 @@ $csrfToken = generateCSRFToken();
                     <button class="btn time-range-btn" data-months="0">全部</button>
                 </div>
             </div>
-            <canvas id="consumptionChart"></canvas>
+            <div id="chartLoading" class="chart-loading">
+                <div class="loading-spinner"></div>
+                <span>加载中...</span>
+            </div>
+            <canvas id="consumptionChart" style="display: none;"></canvas>
         </div>
 
         <!-- 添加记录表单 -->

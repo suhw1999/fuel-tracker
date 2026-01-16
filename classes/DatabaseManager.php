@@ -86,6 +86,9 @@ class DatabaseManager {
                 ON fuel_records(vehicle_id, refuel_date DESC);
             CREATE INDEX IF NOT EXISTS idx_fuel_records_vehicle_mileage
                 ON fuel_records(vehicle_id, current_mileage ASC);
+            CREATE INDEX IF NOT EXISTS idx_fuel_records_chart
+                ON fuel_records(vehicle_id, refuel_date ASC)
+                WHERE calculated_consumption IS NOT NULL;
         ";
         $this->db->exec($sqlRecords);
     }
